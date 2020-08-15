@@ -51,6 +51,8 @@ public class PlaceController {
         Place message = new Place();
         message.setTag(tag);
         message.setDescription(description);
+        message.setRating((double) 0);
+        message.setReviewers(0);
 
 
 
@@ -85,8 +87,8 @@ public class PlaceController {
                           @RequestParam int placeId,Model model){
         var user =userRepository.findByEmail(principal.getName());
         var place=placeRepository.findById(placeId).get();
-
         place.setReviewers(place.getReviewers()+1);
+        place.setRating((place.getRating()+rating)/place.getReviewers());
         placeRepository.save(place);
 
             var review1 = new Review();
