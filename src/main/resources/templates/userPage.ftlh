@@ -27,6 +27,24 @@
         </ul>
     </nav>
 
+    <div class="card-columns">
+        <#list places as place>
+            <div class="card my-3">
+                <#if place.filename??>
+                    <img src="/img/${place.filename}" class="card-img-top">
+                </#if>
+                <div class="m-2">
+                    <span>${place.description}</span>
+                    <i>${place.tag}</i>
+                </div>
+<#--                <div class="card-footer text-muted">-->
+<#--                    ${pl.authorName}-->
+<#--                </div>-->
+            </div>
+        <#else>
+            No message
+        </#list>
+    </div>
 
 
 </@main.renderWith>

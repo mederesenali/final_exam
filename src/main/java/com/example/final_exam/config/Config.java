@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 import javax.sql.DataSource;
 
@@ -66,5 +67,6 @@ public class Config extends WebSecurityConfigurerAdapter {
                        "user on user_role.user_id = user.user_id inner join role on user_role.role_id = role.role_id where email=?")
                 .dataSource(dataSource);
     }
+
 
 }

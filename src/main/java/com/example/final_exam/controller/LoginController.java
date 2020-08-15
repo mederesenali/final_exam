@@ -3,6 +3,7 @@ package com.example.final_exam.controller;
 
 import com.example.final_exam.exception.CustomerAlreadyRegisteredException;
 import com.example.final_exam.model.User;
+import com.example.final_exam.repository.PlaceRepository;
 import com.example.final_exam.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,15 +20,19 @@ import java.security.Principal;
 @Controller
 public class LoginController {
     @Autowired
+    PlaceRepository placeRepository;
+    @Autowired
     UserService userService;
     @GetMapping("/")
-    public String firtsPage(){
+    public String firtsPage(Model model){
+        model.addAttribute("places",placeRepository.findAll());
         return "home";
     }
     @GetMapping("/home")
     public String home(Model model, Principal principal){
         User user=userService.findByEmail(principal.getName());
          model.addAttribute("user", user);
+         model.addAttribute("places",placeRepository.findAll());
         return "userPage";
     }
     @GetMapping("/login")

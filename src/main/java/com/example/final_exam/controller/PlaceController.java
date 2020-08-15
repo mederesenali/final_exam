@@ -59,7 +59,7 @@ public class PlaceController {
         placeRepository.save(message);
 
 
-        return "userPage";
+        return "redirect:/home";
     }
 
 }
