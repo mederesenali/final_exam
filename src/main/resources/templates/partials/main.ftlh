@@ -1,4 +1,4 @@
-<#macro renderWith title="Book" scripts=["/js/main.js"] styles=["/css/main.css"]>
+<#macro renderWith title="CafeCritic" scripts=["/js/main.js"] styles=["/css/main.css"]>
 <!doctype html>
 <html lang="en">
 <head>

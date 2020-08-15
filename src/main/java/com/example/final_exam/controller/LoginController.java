@@ -22,13 +22,13 @@ public class LoginController {
     UserService userService;
     @GetMapping("/")
     public String firtsPage(){
-        return "firsPage";
+        return "home";
     }
     @GetMapping("/home")
     public String home(Model model, Principal principal){
         User user=userService.findByEmail(principal.getName());
          model.addAttribute("user", user);
-        return "home";
+        return "userPage";
     }
     @GetMapping("/login")
     public String loignPage(@RequestParam(required = false, defaultValue = "false") Boolean error, Model model){
@@ -51,6 +51,12 @@ public class LoginController {
         }
         userService.register(user);
         return "redirect:/login";
+    }
+    @GetMapping("/profile")
+    public String profile(Principal principal, Model model) {
+        String user = principal.getName();
+        model.addAttribute("user", userService.findByEmail(user));
+        return "profile";
     }
 
 
