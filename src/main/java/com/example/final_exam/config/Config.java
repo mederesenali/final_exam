@@ -46,7 +46,7 @@ public class Config extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true);
 
         http.authorizeRequests()
-                .antMatchers("/profile","/createPost","/createComment")
+                .antMatchers("/profile","/createReview","/addPlace")
                 .authenticated();
 
         http.authorizeRequests()

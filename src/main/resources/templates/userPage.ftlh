@@ -31,15 +31,20 @@
         <#list places as place>
             <div class="card my-3">
                 <#if place.filename??>
-                    <img src="/img/${place.filename}" class="card-img-top">
+                    <img src="/img/${place.filename}" class="card-img-top" onclick="window.location='/placeDetail/${place.id}'">
                 </#if>
                 <div class="m-2">
                     <span>${place.description}</span>
                     <i>${place.tag}</i>
                 </div>
-<#--                <div class="card-footer text-muted">-->
-<#--                    ${pl.authorName}-->
-<#--                </div>-->
+                <div class="card-footer text-muted">
+                    <#if place.getReviewers()??>
+                        ${place.getReviewers()}
+                        <#else >
+
+                    </#if>
+
+                </div>
             </div>
         <#else>
             No message

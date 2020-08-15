@@ -1,5 +1,6 @@
 package com.example.final_exam.model;
 
+import com.sun.istack.Nullable;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -20,4 +21,6 @@ public class Place {
     private String description;
     @NotBlank
     private String filename;
+    private int reviewers;
+    private Double rating;
 }
