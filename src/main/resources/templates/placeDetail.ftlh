@@ -49,6 +49,18 @@
         </div>
     </div>
 
+    <#if photos??>
+    <#list photos as photo >
+        <#if photo??>
+            <div class="row">
+    <div class="card span 3" style="width: 10rem;" >
+        <img src="/img/${photo.filename}" class="card-img-top"  >
+    </div>
+            </div>
+        </#if>
+    </#list>
+    </#if>
+
 
 
     <div>
@@ -83,14 +95,19 @@
 
 <h1>Upload new photo</h1>
     <form action="/addPhoto" method="post" id="postform" enctype="multipart/form-data">
-    <div class="form-group custom-file">
-        <label class="custom-file-label" for="customFile" >Choose file</label>
-        <input type="file" name="file" id="customFile" required>
-
-    </div>
+        <#if _csrf??>
+            <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
+        </#if>
+        <input type="hidden" name="placeId" value="${place.id}">
+        <div class="form-group">
+            <label class="custom-file-label" for="customFile" >Choose file</label>
+            <div class="custom-file">
+                <input type="file" name="file" id="customFile" required>
+            </div>
+        </div>
     <div>
         <button class="btn btn-outline-primary btn-block" type="submit">
-            Submit new Place!</button>
+            Submit Photo!</button>
     </div>
 
     </form>

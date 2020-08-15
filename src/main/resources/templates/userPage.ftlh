@@ -44,7 +44,9 @@
                         <#else >
 
                     </#if>
-
+                    <#if place.photo??>
+                        <p>${place.photo} photos</p>
+                    </#if>
                 </div>
             </div>
         <#else>

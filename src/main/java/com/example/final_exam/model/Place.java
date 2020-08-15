@@ -23,4 +23,5 @@ public class Place {
     private String filename;
     private int reviewers;
     private Double rating;
+    private int photo;
 }

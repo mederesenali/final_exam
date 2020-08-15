@@ -1,9 +1,11 @@
 package com.example.final_exam.controller;
 
 import antlr.StringUtils;
+import com.example.final_exam.model.Photo;
 import com.example.final_exam.model.Place;
 import com.example.final_exam.model.Review;
 import com.example.final_exam.model.User;
+import com.example.final_exam.repository.PhotoRepository;
 import com.example.final_exam.repository.PlaceRepository;
 import com.example.final_exam.repository.ReviewRepository;
 import com.example.final_exam.repository.UserRepository;
@@ -33,6 +35,8 @@ public class PlaceController {
     ReviewRepository reviewRepository;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    PhotoRepository photoRepository;
 
     @Value("${upload.path}")
     private String uploadPath;
@@ -52,6 +56,7 @@ public class PlaceController {
         message.setTag(tag);
         message.setDescription(description);
         message.setRating((double) 0);
+        message.setPhoto(0);
         message.setReviewers(0);
 
 
@@ -78,6 +83,7 @@ public class PlaceController {
     }
     @GetMapping("/placeDetail/{id}")
     public String bookDetail(@PathVariable("id") int id, Model model) {
+        model.addAttribute("photos",photoRepository.findAllByPlaceId(id));
         model.addAttribute("place", placeRepository.findById(id).get());
         model.addAttribute("reviews", reviewRepository.findAllByPlaceId(id));
         return "placeDetail";
@@ -100,6 +106,44 @@ public class PlaceController {
             review1.setRating(rating);
 
             reviewRepository.save(review1);
+
+        model.addAttribute("photos",photoRepository.findAllByPlaceId(placeId));
+
+        model.addAttribute("place", placeRepository.findById(placeId).get());
+        model.addAttribute("reviews", reviewRepository.findAllByPlaceId(placeId));
+        return "placeDetail";
+    }
+    @PostMapping("/addPhoto")
+    public String addPhoto(
+            @RequestParam int placeId,
+            Model model,
+            @RequestParam("file") MultipartFile file
+    ) throws IOException {
+       Place addPhoto=placeRepository.findById(placeId).get();
+       addPhoto.setPhoto(addPhoto.getPhoto()+1);
+       placeRepository.save(addPhoto);
+        Photo photo=new Photo();
+        var place=placeRepository.findById(placeId).get() ;
+        photo.setPlace(place);
+
+        if (file != null && !file.getOriginalFilename().isEmpty()) {
+            File uploadDir = new File(uploadPath);
+
+            if (!uploadDir.exists()) {
+                uploadDir.mkdir();
+            }
+
+            String uuidFile = UUID.randomUUID().toString();
+            String resultFilename = uuidFile + "." + file.getOriginalFilename();
+
+            file.transferTo(new File(uploadPath + "/" + resultFilename));
+
+            photo.setFilename(resultFilename);
+        }
+
+        photoRepository.save(photo);
+        model.addAttribute("photos",photoRepository.findAllByPlaceId(placeId));
+
         model.addAttribute("place", placeRepository.findById(placeId).get());
         model.addAttribute("reviews", reviewRepository.findAllByPlaceId(placeId));
         return "placeDetail";

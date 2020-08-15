@@ -37,6 +37,8 @@
                         (${place.rating},${place.getReviewers()}reviews)
                         </#if>
                                 </div>
+                <#if place.photo??><p>${place.photo} photos</p>
+                </#if>
             </div>
         <#else>
             No message

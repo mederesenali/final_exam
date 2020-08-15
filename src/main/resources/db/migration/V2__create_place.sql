@@ -5,6 +5,7 @@ create table place(
  filename varchar(500) not null ,
  reviewers int ,
  rating double ,
+ photo int,
  primary key (id)
 
 )
