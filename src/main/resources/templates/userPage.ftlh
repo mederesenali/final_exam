@@ -17,6 +17,12 @@
                 <a class="nav-link " href="/addPlace">Add new place</a>
 
             </li>
+            <form class="flex box-128" action="/logout" method="post">
+                <#if _csrf??>
+                    <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
+                </#if>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Выйти</button>
+            </form>
 
         </ul>
     </nav>
