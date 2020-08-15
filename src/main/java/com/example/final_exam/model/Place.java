@@ -18,5 +18,6 @@ public class Place {
     private String tag;
     @NotBlank
     private String description;
+    @NotBlank
     private String filename;
 }
