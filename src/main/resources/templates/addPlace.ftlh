@@ -28,17 +28,17 @@
         <div class="form-group">
             <label class="flex flex-v-center ">
                 <span class="label-input-text">Title:</span>
-                <input class="form-control mb-2" type="text" name="tag">
+                <input class="form-control mb-2" type="text" name="tag" required>
             </label>
         </div>
         <div class="form-group">
             <label for="exampleTextarea">Description</label>
-            <textarea class="form-control" id="exampleTextarea" name="description" rows="3"></textarea>
+            <textarea class="form-control" id="exampleTextarea" name="description" rows="3" required></textarea>
         </div>
         <div class="form-group">
             <div class="custom-file">
-                <input type="file" name="file" id="customFile">
-                <label class="custom-file-label" for="customFile">Choose file</label>
+                <input type="file" name="file" id="customFile" required>
+                <label class="custom-file-label" for="customFile" >Choose file</label>
             </div>
         </div>
         <div>
