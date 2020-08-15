@@ -2,6 +2,7 @@ package com.example.final_exam.config;
 
 import com.example.final_exam.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -16,6 +17,9 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
 public class Config extends WebSecurityConfigurerAdapter {
+
+    @Value("${upload.path}")
+    private String uploadPath;
     @Autowired
       DataSource dataSource;
     @Autowired
