@@ -49,6 +49,8 @@
         </div>
     </div>
 
+
+
     <div>
         <h1>Reviews</h1>
     </div>
@@ -79,7 +81,19 @@
 
     </table>
 
+<h1>Upload new photo</h1>
+    <form action="/addPhoto" method="post" id="postform" enctype="multipart/form-data">
+    <div class="form-group custom-file">
+        <label class="custom-file-label" for="customFile" >Choose file</label>
+        <input type="file" name="file" id="customFile" required>
 
+    </div>
+    <div>
+        <button class="btn btn-outline-primary btn-block" type="submit">
+            Submit new Place!</button>
+    </div>
+
+    </form>
 
 
 </@main.renderWith>

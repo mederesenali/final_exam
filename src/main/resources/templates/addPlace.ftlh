@@ -35,11 +35,10 @@
             <label for="exampleTextarea">Description</label>
             <textarea class="form-control" id="exampleTextarea" name="description" rows="3" required></textarea>
         </div>
-        <div class="form-group">
-            <div class="custom-file">
+        <div class="form-group custom-file">
+            <label class="custom-file-label" for="customFile" >Choose file</label>
                 <input type="file" name="file" id="customFile" required>
-                <label class="custom-file-label" for="customFile" >Choose file</label>
-            </div>
+
         </div>
         <div>
             <button class="btn btn-outline-primary btn-block" type="submit">
